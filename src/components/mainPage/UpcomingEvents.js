@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {StyleSheet, css} from 'aphrodite';
 import React from 'react';
 import {COLORS} from '../../styles/Colors';
@@ -5,8 +6,7 @@ import Badge from '../../images/icons/badge.png';
 import {Link} from 'gatsby';
 import {getEvents} from '../../api/event';
 import {useState, useEffect} from 'react';
-import {start} from 'xstate/lib/actions';
-import useDeviceType from '../hooks/useDeviceType'
+import useDeviceType from '../hooks/useDeviceType';
 
 const GenerateCard = ({item}) => {
   const devtype = useDeviceType();
@@ -14,11 +14,11 @@ const GenerateCard = ({item}) => {
     <div className={css(styles.container)}>
       <div className={css(styles.containerItems)}>
         <div className={css(styles.imageDiv)}>
-        <img
-          src={item.Photo_Link_1}
-          alt="robot"
-          className={css(styles.image)}
-        />
+          <img
+            src={item.Photo_Link_1}
+            alt="robot"
+            className={css(styles.image)}
+          />
         </div>
         <img
           src={Badge}
@@ -39,12 +39,13 @@ const GenerateCard = ({item}) => {
         <Link to="/" className={css(styles.knowMoreContainer)}>
           <p className={css(styles.moreText)}>Know More</p>
 
-          <i className={
-            devtype === 'mobile'
-              ? css(styles.hideArrow)
+          <i
+            className={
+              devtype === 'mobile'
+                ? css(styles.hideArrow)
                 : 'ri-arrow-right-line'
-          }
-          style={{marginLeft: 6}}></i>
+            }
+            style={{marginLeft: 6}}></i>
         </Link>
       </div>
     </div>
@@ -66,8 +67,8 @@ const UpcomingEvents = () => {
       <div className={css(styles.root)}>
         <div className={css(styles.cards)}>
           {upcomingEvents &&
-            upcomingEvents.map(item => {
-              return <GenerateCard item={item} />;
+            upcomingEvents.map((item, id) => {
+              return <GenerateCard item={item} key={id} />;
             })}
         </div>
       </div>
@@ -102,8 +103,8 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       textAlign: 'center',
       rowGap: 0,
-      columnGap: 0
-    }
+      columnGap: 0,
+    },
   },
 
   container: {
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
       flexDirection: 'column',
       alignItems: 'flex-start',
-    }
+    },
   },
   containerItems: {
     '@media screen and (max-width: 1120px)': {
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
   imageDiv: {
     width: '100%',
     height: 'auto',
-    margin: '0 auto'
+    margin: '0 auto',
   },
   image: {
     width: 357,
@@ -166,8 +167,8 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     '@media screen and (max-width: 1120px)': {
       fontSize: '24px',
-      lineHeight: '29px'
-    }
+      lineHeight: '29px',
+    },
   },
   date: {
     fontFamily: 'Libre Franklin',
@@ -181,9 +182,8 @@ const styles = StyleSheet.create({
       fontSize: '14px',
       lineHeight: '152%',
       marginBottom: 0,
-    marginTop: 4,
-
-    }
+      marginTop: 4,
+    },
   },
   text: {
     fontFamily: 'Libre Franklin',
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
       height: 'max-content',
       maxHeight: 'max-content',
       marginTop: 20,
-    }
+    },
   },
   knowMoreContainer: {
     display: 'flex',
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     textDecoration: 'none',
     '@media screen and (max-width: 1120px)': {
       marginTop: 0,
-    }
+    },
   },
   moreText: {
     fontFamily: 'Libre Franklin',
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     '@media screen and (max-width: 1120px)': {
       marginTop: 0,
       marginBottom: 64,
-    }
+    },
   },
 
   centerDiv: {
@@ -248,8 +248,8 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     '@media screen and (max-width: 1120px)': {
       fontSize: '16px',
-      padding: '19px 38px'
-    }
+      padding: '19px 38px',
+    },
   },
   space: {
     width: 82,

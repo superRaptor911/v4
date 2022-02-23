@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+import React, {useState} from 'react';
 import HeaderDesktop from '../components/HeaderDesktop';
 import {StyleSheet, css} from 'aphrodite';
 import '../styles/Global.css';
@@ -12,9 +13,11 @@ import ProjectCard from '../components/projects/ProjectCard';
 import {COLORS} from '../styles/Colors';
 
 const Projects = ({data}) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const image = getImage(data.file);
   const bgImage = convertToBgImage(image);
   const cardList = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
   return (
     <div>
       <BackgroundImage
@@ -31,6 +34,13 @@ const Projects = ({data}) => {
         />
       </BackgroundImage>
 
+      <div style={{maxWidth: 1240, margin: 'auto', marginTop: 40}}>
+        <input
+          className={css(styles.searchBar)}
+          onChange={e => setSearchTerm(e.target.value)}
+          placeholder="Search a Member"
+        />
+      </div>
       <div className={css(styles.contents)}>
         <div className={css(styles.cardRow)}>
           {cardList.map((item, id) => (
@@ -93,6 +103,17 @@ const styles = StyleSheet.create({
     letterSpacing: '.0125em',
     textAlign: 'center',
     marginTop: 64,
+  },
+  searchBar: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: '18px 26px 18px 36px',
+    width: '559px',
+    height: '66px',
+    border: '1.5px solid #EC3750',
+    boxSizing: 'border-box',
+    borderRadius: '80px',
   },
 });
 
